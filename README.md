@@ -18,3 +18,12 @@ Compile and test with:
 
     mvn -Dserver=... -DapiID=... -DappKey=... clean test install
 
+
+Example
+=======
+
+    Mapping client = Mapping.getInstance(server, appID, appKey);
+	String turtle = client.mapUri("http://identifiers.org/ensembl/ENSG00000100030");
+
+Methods return a String with the content in Turtle format.
+
