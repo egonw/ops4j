@@ -22,33 +22,24 @@
  */
 package com.github.egonw.ops4j;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+public enum ResponseFormat {
 
-import org.apache.http.HttpException;
-import org.apache.http.client.ClientProtocolException;
+	TURTLE("ttl"),
+	TSV("tsv"),
+	JSON("json"),
+	XML("xml"),
+	RDF("rdf"),
+	RDFJSON("rdfjson"),
+	HTML("html");
+	
+	private String opsCode;
 
-public class Mapping extends AbstractOPS4JClient {
-
-	private Mapping(String server, String appID, String appKey) throws MalformedURLException {
-		this.server = server;
-		if (!this.server.endsWith("/")) this.server += "/";
-		new URL(this.server); // validate the server URL
-		this.appID = appID;
-		this.appKey = appKey;
+	ResponseFormat(String opsCode) {
+		this.opsCode = opsCode;
 	}
-
-	public static Mapping getInstance(String server, String apiID, String appKey) throws MalformedURLException {
-		return new Mapping(server, apiID, appKey);
-	}
-
-	public String mapUri(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
-		Map<String,String> params = new HashMap<String,String>();
-		params.put("Uri", uri);
-		return runRequest(server + "mapUri", params, objects);
+	
+	public String getOPSCode() {
+		return this.opsCode;
 	}
 
 }

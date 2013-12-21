@@ -25,5 +25,13 @@ Example
     Mapping client = Mapping.getInstance(server, appID, appKey);
 	String turtle = client.mapUri("http://identifiers.org/ensembl/ENSG00000100030");
 
-Methods return a String with the content in Turtle format.
+Methods return a String with the content in Turtle format. If you want another format,
+use the ResponseFormat class:
 
+    Mapping client = Mapping.getInstance(server, appID, appKey);
+	String json = client.mapUri(
+	  "http://identifiers.org/ensembl/ENSG00000100030",
+	  ResponseFormat.JSON
+	);
+
+Other formats include HTML, RDF, RDFJSON, and TSV.

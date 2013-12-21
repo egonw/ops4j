@@ -48,7 +48,7 @@ public class Concepts extends AbstractOPS4JClient {
 	public String freetext(String text, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("q", text);
-		return runRequest(server + "search/freetext", params);
+		return runRequest(server + "search/freetext", params, objects);
 	}
 
 	public String freetextByTag(String text, String uuid, Object... objects)
@@ -56,13 +56,13 @@ public class Concepts extends AbstractOPS4JClient {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("q", text);
 		params.put("uuid", uuid);
-		return runRequest(server + "search/byTag", params);
+		return runRequest(server + "search/byTag", params, objects);
 	}
 
 	public String description(String conceptWikiID, Object... objects)
 	throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uuid", conceptWikiID);
-		return runRequest(server + "getConceptDescription", params);
+		return runRequest(server + "getConceptDescription", params, objects);
 	}
 }

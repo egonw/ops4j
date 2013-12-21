@@ -28,9 +28,10 @@ public class AbstractOPS4JClient {
 
 		params.put("app_id", appID);
 		params.put("app_key", appKey);
-		params.put("_format", "ttl");
-		String requestUrl = createRequest(server, params);
-		HttpGet httppost = new HttpGet(requestUrl);
+		params.put("_format", "ttl"); // the default
+		String requestUrl = createRequest(server, params, objects);
+		System.out.println("Call: " + requestUrl);
+		HttpGet httppost = new HttpGet(requestUrl); 
 
 		HttpResponse response = httpclient.execute(httppost);
 		StatusLine statusLine = response.getStatusLine();
@@ -45,8 +46,15 @@ public class AbstractOPS4JClient {
 		return writer.toString();
 	}
 	
-	private String createRequest(String server, Map<String, String> params) throws UnsupportedEncodingException {
+	private String createRequest(String server, Map<String, String> params, Object... objects)
+	throws UnsupportedEncodingException {
 		StringBuffer requestURI = new StringBuffer();
+		for (int i=0; i<objects.length; i++) {
+			Object obj = objects[i];
+			if (obj instanceof ResponseFormat) {
+				params.put("_format", ((ResponseFormat)obj).getOPSCode());
+			}
+		}
 		if (!params.isEmpty()) {
 			requestURI.append(server).append('?');
 			boolean beyondFirst = false;

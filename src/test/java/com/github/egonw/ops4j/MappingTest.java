@@ -43,4 +43,17 @@ public class MappingTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://identifiers.org/ensembl/ENSG00000100030"));
 	}
+
+	@Test
+	public void mapUri_JSON() throws ClientProtocolException, IOException, HttpException {
+		Mapping client = Mapping.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String json = client.mapUri(
+			"http://identifiers.org/ensembl/ENSG00000100030",
+			ResponseFormat.JSON
+		);
+		System.out.println("JSON: " + json);
+		Assert.assertNotNull(json);
+		Assert.assertTrue(json.contains("http://identifiers.org/ensembl/ENSG00000100030"));
+	}
 }
