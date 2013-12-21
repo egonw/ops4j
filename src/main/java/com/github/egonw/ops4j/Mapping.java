@@ -36,9 +36,7 @@ public class Mapping extends AbstractOPS4JClient {
 	private Mapping(String server, String appID, String appKey) throws MalformedURLException {
 		this.server = server;
 		if (!this.server.endsWith("/")) this.server += "/";
-		this.server += "mapUri";
 		new URL(this.server); // validate the server URL
-		System.out.println("Service: " + this.server);
 		this.appID = appID;
 		this.appKey = appKey;
 	}
@@ -50,7 +48,7 @@ public class Mapping extends AbstractOPS4JClient {
 	public String mapUri(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("Uri", uri);
-		return runRequest(server, params);
+		return runRequest(server + "mapUri", params);
 	}
 
 }
