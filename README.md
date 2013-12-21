@@ -5,8 +5,8 @@ This Java client is an incomplete client to the Open PHACTS 1.3 API.
 The goal is a small client with few dependencies and no Scala in
 particular. Dependencies are JUnit and Apache's HttpClient and Commons IO.
 
-License: LGPL v2.1 or later
-Authors: Egon Willighagen
+* License: LGPL v2.1 or later
+* Authors: Egon Willighagen
 
 Compiling and Testing
 =====================
