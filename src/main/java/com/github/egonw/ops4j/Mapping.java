@@ -23,21 +23,13 @@
 package com.github.egonw.ops4j;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 public class Mapping extends AbstractOPS4JClient {
 
@@ -56,27 +48,9 @@ public class Mapping extends AbstractOPS4JClient {
 	}
 
 	public String mapUri(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-
 		Map<String,String> params = new HashMap<String,String>();
-		params.put("app_id", appID);
-		params.put("app_key", appKey);
-		params.put("_format", "ttl");
-		params.put("Uri", uri); 
-		String requestUrl = createRequest(server, params);
-		HttpGet httppost = new HttpGet(requestUrl);
-
-		HttpResponse response = httpclient.execute(httppost);
-		StatusLine statusLine = response.getStatusLine();
-		int statusCode = statusLine.getStatusCode();
-		if (statusCode != 200) throw new HttpException(statusLine.getReasonPhrase());
-
-		HttpEntity responseEntity = response.getEntity();
-		InputStream in = responseEntity.getContent();
-		StringWriter writer = new StringWriter();
-		IOUtils.copy(in, writer, "UTF-8");
-		in.close();
-		return writer.toString();
+		params.put("Uri", uri);
+		return runRequest(server, params);
 	}
 
 }
