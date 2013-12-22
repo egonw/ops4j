@@ -52,7 +52,6 @@ public class MappingTest extends AbstractOPS4JTest {
 			"http://identifiers.org/ensembl/ENSG00000100030",
 			ResponseFormat.JSON
 		);
-		System.out.println("JSON: " + json);
 		Assert.assertNotNull(json);
 		Assert.assertTrue(json.contains("http://identifiers.org/ensembl/ENSG00000100030"));
 	}
