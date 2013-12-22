@@ -28,7 +28,6 @@ import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Assert;
 import org.junit.Ignore;
-import org.junit.Test;
 
 
 public class ConceptsTest extends AbstractOPS4JTest {
