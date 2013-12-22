@@ -66,6 +66,8 @@ public class Compounds extends AbstractOPS4JClient {
 	public String pharmacologyList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
 		return runRequest(server + "compound/pharmacology/pages", params, objects);
 	}
 
