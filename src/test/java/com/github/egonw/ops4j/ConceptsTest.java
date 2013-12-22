@@ -27,6 +27,7 @@ import java.io.IOException;
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -34,7 +35,7 @@ public class ConceptsTest extends AbstractOPS4JTest {
 
 	{ super.pickUpConfig(); }
 
-	@Test
+	@Ignore
 	public void freetext() throws ClientProtocolException, IOException, HttpException {
 		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
@@ -44,7 +45,7 @@ public class ConceptsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("water"));
 	}
 
-	@Test
+	@Ignore
 	public void byTag() throws ClientProtocolException, IOException, HttpException {
 		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
@@ -54,7 +55,7 @@ public class ConceptsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("water"));
 	}
 
-	@Test
+	@Ignore
 	public void description() throws ClientProtocolException, IOException, HttpException {
 		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
