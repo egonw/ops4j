@@ -18,6 +18,9 @@ Compile and test with:
 
     mvn -Dserver=... -DapiID=... -DappKey=... clean test install
 
+The current beta test server can be tested against using:
+
+    -Dserver=https://beta.openphacts.org/1.3/
 
 Example
 =======
