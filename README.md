@@ -21,6 +21,9 @@ Compile and test with:
 The current beta test server can be tested against using:
 
     -Dserver=https://beta.openphacts.org/1.3/
+    
+The documentation for this Open PHACTS API server can be found at
+https://dev.openphacts.org/docs/1.3
 
 Example
 =======
