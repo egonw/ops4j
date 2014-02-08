@@ -16,7 +16,7 @@ which you can get at http://dev.openphacts.org/.
 
 Compile and test with:
 
-    mvn -Dserver=... -DapiID=... -DappKey=... clean test install
+    mvn -Dserver=... -DappID=... -DappKey=... clean test install
 
 The current beta test server can be tested against using:
 
