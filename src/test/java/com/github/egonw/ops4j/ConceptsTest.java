@@ -47,7 +47,7 @@ public class ConceptsTest extends AbstractOPS4JTest {
 	public void byTag() throws ClientProtocolException, IOException, HttpException {
 		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.freetextByTag("water", "07a84994-e464-4bbf-812a-a4b96fa3d197");
+		String turtle = client.freetextByTag("water", ConceptType.CHEMICAL_VIEWED_STRUCTURALLY);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("water"));
@@ -57,7 +57,7 @@ public class ConceptsTest extends AbstractOPS4JTest {
 	public void byTag_Protein() throws ClientProtocolException, IOException, HttpException {
 		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.freetextByTag("crambin", "eeaec894-d856-4106-9fa1-662b1dc6c6f1");
+		String turtle = client.freetextByTag("crambin", ConceptType.AMINO_ACID_PEPTIDE_OR_PROTEIN);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("crambin"));

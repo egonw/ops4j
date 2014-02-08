@@ -51,11 +51,11 @@ public class Concepts extends AbstractOPS4JClient {
 		return runRequest(server + "search/freetext", params, objects);
 	}
 
-	public String freetextByTag(String text, String uuid, Object... objects)
+	public String freetextByTag(String text, ConceptType tag, Object... objects)
 	throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("q", text);
-		params.put("uuid", uuid);
+		params.put("uuid", tag.getUUID());
 		return runRequest(server + "search/byTag", params, objects);
 	}
 
