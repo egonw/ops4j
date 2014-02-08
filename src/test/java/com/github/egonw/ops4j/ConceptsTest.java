@@ -28,6 +28,7 @@ import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
 
 
 public class ConceptsTest extends AbstractOPS4JTest {
@@ -52,6 +53,16 @@ public class ConceptsTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("water"));
+	}
+
+	@Test
+	public void byTag_Protein() throws ClientProtocolException, IOException, HttpException {
+		Concepts client = Concepts.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.freetextByTag("crambin", "eeaec894-d856-4106-9fa1-662b1dc6c6f1");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("crambin"));
 	}
 
 	@Ignore
