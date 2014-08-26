@@ -45,6 +45,10 @@ public class ActivityTypes extends AbstractOPS4JClient {
 		return new ActivityTypes(server, apiID, appKey);
 	}
 
+	public static ActivityTypes getInstance(Server server) throws MalformedURLException {
+		return new ActivityTypes(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+
 	public String count(Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		return runRequest(server + "pharmacology/filters/activities/count", params, objects);

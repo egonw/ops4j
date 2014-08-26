@@ -45,6 +45,10 @@ public class ActivityUnits extends AbstractOPS4JClient {
 		return new ActivityUnits(server, apiID, appKey);
 	}
 
+	public static ActivityUnits getInstance(Server server) throws MalformedURLException {
+		return new ActivityUnits(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+	
 	public String count(Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		return runRequest(server + "pharmacology/filters/count_units", params, objects);

@@ -45,6 +45,10 @@ public class Compounds extends AbstractOPS4JClient {
 		return new Compounds(server, apiID, appKey);
 	}
 
+	public static Compounds getInstance(Server server) throws MalformedURLException {
+		return new Compounds(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+	
 	public String info(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);

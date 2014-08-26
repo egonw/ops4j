@@ -45,6 +45,10 @@ public class Pathways extends AbstractOPS4JClient {
 		return new Pathways(server, apiID, appKey);
 	}
 
+	public static Pathways getInstance(Server server) throws MalformedURLException {
+		return new Pathways(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+	
 	public String count(Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		return runRequest(server + "pathways/count", params, objects);

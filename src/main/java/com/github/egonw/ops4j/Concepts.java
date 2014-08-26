@@ -45,6 +45,10 @@ public class Concepts extends AbstractOPS4JClient {
 		return new Concepts(server, apiID, appKey);
 	}
 
+	public static Concepts getInstance(Server server) throws MalformedURLException {
+		return new Concepts(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+	
 	public String freetext(String text, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("q", text);

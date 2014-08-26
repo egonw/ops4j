@@ -45,6 +45,10 @@ public class Structures extends AbstractOPS4JClient {
 		return new Structures(server, apiID, appKey);
 	}
 
+	public static Structures getInstance(Server server) throws MalformedURLException {
+		return new Structures(server.getServer(), server.getAppID(), server.getAppKey());
+	}
+	
 	public String smiles2uri(String smiles, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("smiles", smiles);

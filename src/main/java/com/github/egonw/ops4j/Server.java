@@ -1,4 +1,4 @@
-/* Copyright (C) 2013  Egon Willighagen <egonw@users.sf.net>
+/* Copyright (C) 2014  Egon Willighagen <egonw@users.sf.net>
  * 
  * Contact: cdk-devel@lists.sourceforge.net
  * 
@@ -22,37 +22,27 @@
  */
 package com.github.egonw.ops4j;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+public class Server {
 
-import org.apache.http.HttpException;
-import org.apache.http.client.ClientProtocolException;
+	private String server;
+	private String appID;
+	private String appKey;
 
-public class Mapping extends AbstractOPS4JClient {
-
-	private Mapping(String server, String appID, String appKey) throws MalformedURLException {
+	public Server(String server, String appID, String appKey) {
 		this.server = server;
-		if (!this.server.endsWith("/")) this.server += "/";
-		new URL(this.server); // validate the server URL
 		this.appID = appID;
 		this.appKey = appKey;
 	}
 
-	public static Mapping getInstance(String server, String apiID, String appKey) throws MalformedURLException {
-		return new Mapping(server, apiID, appKey);
-	}
-
-	public static Mapping getInstance(Server server) throws MalformedURLException {
-		return new Mapping(server.getServer(), server.getAppID(), server.getAppKey());
+	public String getServer() {
+		return server;
 	}
 	
-	public String mapUri(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
-		Map<String,String> params = new HashMap<String,String>();
-		params.put("Uri", uri);
-		return runRequest(server + "mapUri", params, objects);
+	public String getAppID() {
+		return appID;
 	}
 
+	public String getAppKey() {
+		return appKey;
+	}
 }
