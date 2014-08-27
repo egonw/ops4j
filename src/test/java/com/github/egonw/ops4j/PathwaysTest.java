@@ -38,7 +38,6 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.count();
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 	}
@@ -48,7 +47,6 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.list(1, 5);
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("<http://rdf.wikipathways.org/Pathway/WP"));
@@ -59,7 +57,6 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.info("http://identifiers.org/wikipathways/WP1019");
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP1019"));
