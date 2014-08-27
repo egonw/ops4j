@@ -36,7 +36,9 @@ public class AbstractOPS4JClient {
 		HttpResponse response = httpclient.execute(httppost);
 		StatusLine statusLine = response.getStatusLine();
 		int statusCode = statusLine.getStatusCode();
-		if (statusCode != 200) throw new HttpException(statusLine.getReasonPhrase());
+		if (statusCode != 200) throw new HttpException(
+			"Expected HTTP 200, but got a " + statusCode + ": " + statusLine.getReasonPhrase()
+		);
 
 		HttpEntity responseEntity = response.getEntity();
 		InputStream in = responseEntity.getContent();
