@@ -66,4 +66,22 @@ public class Pathways extends AbstractOPS4JClient {
 		params.put("uri", uri);
 		return runRequest(server + "pathway", params, objects);
 	}
+
+	public String getCompounds(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathway/getCompounds", params, objects);
+	}
+
+	public String getTargets(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathway/getTargets", params, objects);
+	}
+
+	public String getPublications(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathway/getReferences", params, objects);
+	}
 }

@@ -65,4 +65,34 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP1019"));
 	}
 
+	@Test
+	public void getCompounds() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.getCompounds("http://identifiers.org/wikipathways/WP1019");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/hmdb/HMDB01429"));
+	}
+
+	@Test
+	public void getTargets() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.getTargets("http://identifiers.org/wikipathways/WP1019");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/ncbigene/493720"));
+	}
+
+	@Test
+	public void getPublications() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.getPublications("http://identifiers.org/wikipathways/WP1019");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/pubmed/10914538"));
+	}
+
 }
