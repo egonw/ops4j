@@ -86,4 +86,54 @@ public class TargetsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("hasTargetType"));
 	}
+
+	@Test
+	public void classPharmacologyCount() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classPharmacologyCount("http://purl.uniprot.org/enzyme/6.2.-.-");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://purl.uniprot.org/enzyme/6.2.-.-"));
+		Assert.assertTrue(turtle.contains("targetPharmacologyTotalResults"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void classPharmacologyList() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classPharmacologyList(
+			"http://purl.uniprot.org/enzyme/6.2.-.-",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("classifiedUnder"));
+	}
+
+	@Test
+	public void classMemberCount() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classMemberCount("http://purl.uniprot.org/enzyme/6.2.-.-");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://purl.uniprot.org/enzyme/6.2.-.-"));
+		Assert.assertTrue(turtle.contains("memberCount"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void classMemberList() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classMemberList(
+			"http://purl.uniprot.org/enzyme/6.2.-.-",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("targetOrganismName"));
+	}
 }

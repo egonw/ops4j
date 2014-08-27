@@ -79,4 +79,32 @@ public class Targets extends AbstractOPS4JClient {
 		Map<String,String> params = new HashMap<String,String>();
 		return runRequest(server + "target/types", params, objects);
 	}
+
+	public String classPharmacologyCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "target/tree/pharmacology/count", params, objects);
+	}
+
+	public String classPharmacologyList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "target/tree/pharmacology/pages", params, objects);
+	}
+
+	public String classMemberCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "target/members/count", params, objects);
+	}
+
+	public String classMemberList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "target/members/pages", params, objects);
+	}
 }

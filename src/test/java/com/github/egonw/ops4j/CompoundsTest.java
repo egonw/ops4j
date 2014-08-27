@@ -98,4 +98,29 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/"));
 	}
+
+	@Test
+	public void classPharmacologyCount() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classPharmacologyCount("http://purl.obolibrary.org/obo/CHEBI_100");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://purl.obolibrary.org/obo/CHEBI_100"));
+		Assert.assertTrue(turtle.contains("compoundPharmacologyTotalResults"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void classPharmacologyList() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.classPharmacologyList(
+			"http://purl.obolibrary.org/obo/CHEBI_100",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("hasMolecule"));
+	}
 }
