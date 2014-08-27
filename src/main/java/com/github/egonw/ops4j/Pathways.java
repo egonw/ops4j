@@ -84,4 +84,46 @@ public class Pathways extends AbstractOPS4JClient {
 		params.put("uri", uri);
 		return runRequest(server + "pathway/getReferences", params, objects);
 	}
+
+	public String forCompoundCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathways/byCompound/count", params, objects);
+	}
+
+	public String forCompoundList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "pathways/byCompound", params, objects);
+	}
+
+	public String forTargetCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathways/byTarget/count", params, objects);
+	}
+
+	public String forTargetList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "pathways/byTarget", params, objects);
+	}
+
+	public String forPublicationCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "pathways/byReference/count", params, objects);
+	}
+
+	public String forPublicationList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "pathways/byReference", params, objects);
+	}
 }

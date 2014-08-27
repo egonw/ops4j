@@ -92,4 +92,75 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("http://identifiers.org/pubmed/10914538"));
 	}
 
+	@Test
+	public void forCompoundCount() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forCompoundCount("http://www.conceptwiki.org/concept/83931753-9e3f-4e90-b104-e3bcd0b4d833");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("pathway_count"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void forCompoundList() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forCompoundList(
+			"http://www.conceptwiki.org/concept/83931753-9e3f-4e90-b104-e3bcd0b4d833",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP"));
+	}
+
+	@Test
+	public void forTargetCount() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forTargetCount("http://identifiers.org/ncbigene/282478");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("pathway_count"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void forTargetList() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forTargetList(
+			"http://identifiers.org/ncbigene/282478",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP"));
+	}
+
+	@Test
+	public void forPublicationCount() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forPublicationCount("http://identifiers.org/pubmed/9789062");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("pathway_count"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
+	@Test
+	public void forPublicationList() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forPublicationList(
+			"http://identifiers.org/pubmed/9789062",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP"));
+	}
 }
