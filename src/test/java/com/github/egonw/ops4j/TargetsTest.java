@@ -51,6 +51,7 @@ public class TargetsTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"));
+		Assert.assertFalse(turtle.contains("\"0\""));
 	}
 
 	@Test
