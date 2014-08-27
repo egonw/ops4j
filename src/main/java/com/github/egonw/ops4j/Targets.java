@@ -66,7 +66,7 @@ public class Targets extends AbstractOPS4JClient {
 		params.put("uri", uri);
 		params.put("_page", Integer.toString(page));
 		params.put("_pageSize", Integer.toString(pageSize));
-		return runRequest(server + "compound/pharmacology/pages", params, objects);
+		return runRequest(server + "target/pharmacology/pages", params, objects);
 	}
 
 	public String classifications(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
