@@ -75,4 +75,8 @@ public class Targets extends AbstractOPS4JClient {
 		return runRequest(server + "target/classifications", params, objects);
 	}
 
+	public String types(Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		return runRequest(server + "target/types", params, objects);
+	}
 }
