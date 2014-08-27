@@ -75,4 +75,27 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"));
 	}
+
+	@Test
+	public void compoundByClassCount() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.compoundByClassCount("http://purl.obolibrary.org/obo/CHEBI_24431");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://purl.obolibrary.org/obo/CHEBI_24431"));
+	}
+
+	@Test
+	public void compoundByClassList() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.compoundByClassList(
+			"http://purl.obolibrary.org/obo/CHEBI_24431",
+			1, 5
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/"));
+	}
 }
