@@ -107,4 +107,10 @@ public class Targets extends AbstractOPS4JClient {
 		params.put("_pageSize", Integer.toString(pageSize));
 		return runRequest(server + "target/members/pages", params, objects);
 	}
+
+	public String compoundClassificationsFor(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "target/classificationsForCompounds", params, objects);
+	}
 }

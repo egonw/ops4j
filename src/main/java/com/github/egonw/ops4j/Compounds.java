@@ -103,4 +103,9 @@ public class Compounds extends AbstractOPS4JClient {
 		return runRequest(server + "compound/tree/pharmacology/pages", params, objects);
 	}
 
+	public String targetClassificationsFor(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "compound/classificationsForTargets", params, objects);
+	}
 }

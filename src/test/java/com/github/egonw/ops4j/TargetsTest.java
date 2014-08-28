@@ -136,4 +136,14 @@ public class TargetsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("targetOrganismName"));
 	}
+
+	@Test
+	public void targetClassificationsFor() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.compoundClassificationsFor("http://purl.uniprot.org/uniprot/P00918");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://purl.obolibrary.org/obo/CHEBI_27510"));
+	}
 }
