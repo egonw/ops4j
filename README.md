@@ -1,7 +1,7 @@
 A Java client for Open PHACTS
 =============================
 
-This Java client is an incomplete client to the Open PHACTS 1.3 API.
+This Java client is an incomplete client to the Open PHACTS 1.4 API.
 The goal is a small client with few dependencies and no Scala in
 particular. Dependencies are JUnit and Apache's HttpClient and Commons IO.
 
@@ -20,10 +20,10 @@ Compile and test with:
 
 The current beta test server can be tested against using:
 
-    -Dserver=https://beta.openphacts.org/1.3/
+    -Dserver=https://beta.openphacts.org/1.4/
     
 The documentation for this Open PHACTS API server can be found at
-https://dev.openphacts.org/docs/1.3
+https://dev.openphacts.org/docs/1.4
 
 Example
 =======
