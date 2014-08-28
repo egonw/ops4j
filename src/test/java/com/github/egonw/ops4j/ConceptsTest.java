@@ -70,6 +70,6 @@ public class ConceptsTest extends AbstractOPS4JTest {
 		String turtle = client.description("8f7f8fe0-f7ad-4192-b57b-e00120d0beee");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("Isoprene"));
+		Assert.assertTrue(turtle.contains("definition"));
 	}
 }
