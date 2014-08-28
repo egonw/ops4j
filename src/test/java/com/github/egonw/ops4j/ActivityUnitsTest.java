@@ -52,4 +52,15 @@ public class ActivityUnitsTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("IC50"));
 	}
+
+	@Test
+	public void forType() throws ClientProtocolException, IOException, HttpException {
+		ActivityUnits client = ActivityUnits.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forType("IC50");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("IC50"));
+		Assert.assertTrue(turtle.contains("http://www.openphacts.org/units/Micromolar"));
+	}
 }

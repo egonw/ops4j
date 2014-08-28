@@ -163,4 +163,15 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://identifiers.org/wikipathways/WP"));
 	}
+
+	@Test
+	public void organisms() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.organisms();
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("pathway_count"));
+		Assert.assertTrue(turtle.contains("http://purl.obolibrary.org/obo/NCBITaxon_"));
+	}
 }

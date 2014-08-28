@@ -126,4 +126,9 @@ public class Pathways extends AbstractOPS4JClient {
 		params.put("_pageSize", Integer.toString(pageSize));
 		return runRequest(server + "pathways/byReference", params, objects);
 	}
+
+	public String organisms(Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		return runRequest(server + "pathways/organisms", params, objects);
+	}
 }

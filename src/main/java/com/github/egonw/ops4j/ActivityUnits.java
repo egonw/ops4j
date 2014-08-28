@@ -60,4 +60,9 @@ public class ActivityUnits extends AbstractOPS4JClient {
 		params.put("_pageSize", Integer.toString(pageSize));
 		return runRequest(server + "pharmacology/filters/units", params, objects);
 	}
+
+	public String forType(String type, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		return runRequest(server + "pharmacology/filters/units/" + type, params, objects);
+	}
 }
