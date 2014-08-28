@@ -31,9 +31,9 @@ import java.util.Map;
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 
-public class Diseases extends AbstractOPS4JClient {
+public class Associations extends AbstractOPS4JClient {
 
-	private Diseases(String server, String appID, String appKey) throws MalformedURLException {
+	private Associations(String server, String appID, String appKey) throws MalformedURLException {
 		this.server = server;
 		if (!this.server.endsWith("/")) this.server += "/";
 		new URL(this.server); // validate the server URL
@@ -41,18 +41,18 @@ public class Diseases extends AbstractOPS4JClient {
 		this.appKey = appKey;
 	}
 
-	public static Diseases getInstance(String server, String apiID, String appKey) throws MalformedURLException {
-		return new Diseases(server, apiID, appKey);
+	public static Associations getInstance(String server, String apiID, String appKey) throws MalformedURLException {
+		return new Associations(server, apiID, appKey);
 	}
 
-	public static Diseases getInstance(Server server) throws MalformedURLException {
-		return new Diseases(server.getServer(), server.getAppID(), server.getAppKey());
+	public static Associations getInstance(Server server) throws MalformedURLException {
+		return new Associations(server.getServer(), server.getAppID(), server.getAppKey());
 	}
 
 	public String forTargetCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
-		return runRequest(server + "disease/byTarget/count", params, objects);
+		return runRequest(server + "disease/assoc/byTarget/count", params, objects);
 	}
 
 	public String forTargetList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
@@ -60,26 +60,20 @@ public class Diseases extends AbstractOPS4JClient {
 		params.put("uri", uri);
 		params.put("_page", Integer.toString(page));
 		params.put("_pageSize", Integer.toString(pageSize));
-		return runRequest(server + "disease/byTarget", params, objects);
+		return runRequest(server + "disease/assoc/byTarget", params, objects);
 	}
 
-	public String targetCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+	public String forDiseaseCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
-		return runRequest(server + "disease/getTargets/count", params, objects);
+		return runRequest(server + "disease/assoc/byDisease/count", params, objects);
 	}
 
-	public String targetList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+	public String forDiseaseList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
 		params.put("_page", Integer.toString(page));
 		params.put("_pageSize", Integer.toString(pageSize));
-		return runRequest(server + "disease/getTargets", params, objects);
-	}
-
-	public String info(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
-		Map<String,String> params = new HashMap<String,String>();
-		params.put("uri", uri);
-		return runRequest(server + "disease", params, objects);
+		return runRequest(server + "disease/assoc/byDisease", params, objects);
 	}
 }

@@ -30,24 +30,24 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class DiseasesTest extends AbstractOPS4JTest {
+public class AssociationsTest extends AbstractOPS4JTest {
 
 	{ super.pickUpConfig(); }
 
 	@Test
 	public void forTargetCount() throws ClientProtocolException, IOException, HttpException {
-		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
+		Associations client = Associations.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.forTargetCount("http://purl.uniprot.org/uniprot/Q9Y5Y9");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("diseaseCount"));
+		Assert.assertTrue(turtle.contains("associationsCount"));
 		Assert.assertFalse(turtle.contains("\"0\""));
 	}
 
 	@Test
 	public void forTargetList() throws ClientProtocolException, IOException, HttpException {
-		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
+		Associations client = Associations.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.forTargetList(
 			"http://purl.uniprot.org/uniprot/Q9Y5Y9",
@@ -55,43 +55,32 @@ public class DiseasesTest extends AbstractOPS4JTest {
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("forGene"));
-		Assert.assertTrue(turtle.contains("http://linkedlifedata.com/resource/umls"));
+		Assert.assertTrue(turtle.contains("diseaseClass"));
+		Assert.assertTrue(turtle.contains("SIO_000983"));
 	}
 
 	@Test
-	public void targetCount() throws ClientProtocolException, IOException, HttpException {
-		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
+	public void forDiseaseCount() throws ClientProtocolException, IOException, HttpException {
+		Associations client = Associations.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.targetCount("http://linkedlifedata.com/resource/umls/id/C0024530");
+		String turtle = client.forDiseaseCount("http://linkedlifedata.com/resource/umls/id/C0024530");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("targetCount"));
+		Assert.assertTrue(turtle.contains("associationsCount"));
 		Assert.assertFalse(turtle.contains("\"0\""));
 	}
 
 	@Test
-	public void targetList() throws ClientProtocolException, IOException, HttpException {
-		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
+	public void forDiseaseList() throws ClientProtocolException, IOException, HttpException {
+		Associations client = Associations.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.targetList(
+		String turtle = client.forDiseaseList(
 			"http://linkedlifedata.com/resource/umls/id/C0024530",
 			1, 4
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("forDisease"));
-		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept"));
-	}
-
-	@Test
-	public void info() throws ClientProtocolException, IOException, HttpException {
-		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
-		Assert.assertNotNull(client);
-		String turtle = client.info("http://linkedlifedata.com/resource/umls/id/C0024530");
-		Assert.assertNotNull(turtle);
-		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("name"));
-		Assert.assertTrue(turtle.contains("inDataset"));
+		Assert.assertTrue(turtle.contains("diseaseClass"));
+		Assert.assertTrue(turtle.contains("SIO_000983"));
 	}
 }
