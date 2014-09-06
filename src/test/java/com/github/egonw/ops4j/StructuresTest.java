@@ -65,10 +65,30 @@ public class StructuresTest extends AbstractOPS4JTest {
 	}
 
 	@Test
+	public void tanimotoSimilarityFrom() throws ClientProtocolException, IOException, HttpException {
+		Structures client = Structures.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.tanimotoSimilarityFrom("CC(=O)Oc1ccccc1C(=O)O", 0.9f, 0, 5);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("CC(=O)Oc1ccccc1C(=O)O"));
+	}
+
+	@Test
+	public void tanimotoSimilarity() throws ClientProtocolException, IOException, HttpException {
+		Structures client = Structures.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.tanimotoSimilarity("CC(=O)Oc1ccccc1C(=O)O", 0.9f);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("CC(=O)Oc1ccccc1C(=O)O"));
+	}
+
+	@Test
 	public void similarity() throws ClientProtocolException, IOException, HttpException {
 		Structures client = Structures.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.similarity("CC(=O)Oc1ccccc1C(=O)O", 0.9f, 0, 5);
+		String turtle = client.similarity("CC(=O)Oc1ccccc1C(=O)O");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("CC(=O)Oc1ccccc1C(=O)O"));
