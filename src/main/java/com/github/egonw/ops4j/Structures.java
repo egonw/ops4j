@@ -78,6 +78,22 @@ public class Structures extends AbstractOPS4JClient {
 		return runRequest(server + "structure/similarity", params, objects);
 	}
 
+	public String similarity(String smiles, float treshold, Object... objects)
+	throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("searchOptions.Molecule", smiles);
+		params.put("searchOptions.SimilarityType", "0"); // Tanimoto
+		params.put("searchOptions.Threshold", Float.toString(treshold));
+		return runRequest(server + "structure/similarity", params, objects);
+	}
+
+	public String similarity(String smiles, Object... objects)
+	throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("searchOptions.Molecule", smiles);
+		return runRequest(server + "structure/similarity", params, objects);
+	}
+
 	public String substructure(String smiles, int start, int count, Object... objects)
 	throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
