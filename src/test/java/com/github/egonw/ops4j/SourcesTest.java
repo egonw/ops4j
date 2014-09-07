@@ -38,7 +38,6 @@ public class SourcesTest extends AbstractOPS4JTest {
 		Sources client = Sources.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.list();
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("Chemical Entities of Biological Interest"));
