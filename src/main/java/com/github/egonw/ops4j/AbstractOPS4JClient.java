@@ -55,6 +55,9 @@ public class AbstractOPS4JClient {
 			Object obj = objects[i];
 			if (obj instanceof ResponseFormat) {
 				params.put("_format", ((ResponseFormat)obj).getOPSCode());
+			} else if (obj instanceof ParameterValue) {
+				ParameterValue value = (ParameterValue)obj;
+				params.put(value.getParameter().getName(), value.getValue());
 			}
 		}
 		if (!params.isEmpty()) {
