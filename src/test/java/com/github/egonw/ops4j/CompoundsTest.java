@@ -129,7 +129,6 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.targetClassificationsFor("http://ops.rsc.org/OPS6958");
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://rdf.ebi.ac.uk/resource/chembl/protclass/CHEMBL_PC_156"));
@@ -143,7 +142,6 @@ public class CompoundsTest extends AbstractOPS4JTest {
 			"http://ops.rsc.org/OPS6958",
 			new ParameterValue(Compounds.TREE, "chembl")
 		);
-		System.out.println(turtle);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://rdf.ebi.ac.uk/resource/chembl/protclass/CHEMBL_PC_156"));
