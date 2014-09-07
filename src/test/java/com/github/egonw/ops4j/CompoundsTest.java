@@ -135,7 +135,7 @@ public class CompoundsTest extends AbstractOPS4JTest {
 	}
 
 	@Test
-	public void chebiClassificationsFor() throws ClientProtocolException, IOException, HttpException {
+	public void chemblClassificationsFor() throws ClientProtocolException, IOException, HttpException {
 		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.targetClassificationsFor(
