@@ -35,7 +35,7 @@ public class AbstractOPS4JClient {
 		this.appID = appID;
 		this.appKey = appKey;
 		this.httpClient = httpclient;
-//		if (httpclient == null) this.httpClient = new DefaultHttpClient();
+		if (httpclient == null) this.httpClient = new DefaultHttpClient();
 	}
 	
 	protected String runRequest(String call, Map<String, String> params, Object... objects)
