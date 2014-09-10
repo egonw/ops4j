@@ -24,7 +24,6 @@ package com.github.egonw.ops4j;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,11 +33,7 @@ import org.apache.http.client.ClientProtocolException;
 public class Mapping extends AbstractOPS4JClient {
 
 	private Mapping(String server, String appID, String appKey) throws MalformedURLException {
-		this.server = server;
-		if (!this.server.endsWith("/")) this.server += "/";
-		new URL(this.server); // validate the server URL
-		this.appID = appID;
-		this.appKey = appKey;
+		super(server, appID, appKey, null);
 	}
 
 	public static Mapping getInstance(String server, String apiID, String appKey) throws MalformedURLException {

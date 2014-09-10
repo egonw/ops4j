@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -13,27 +15,39 @@ import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class AbstractOPS4JClient {
 
+	private HttpClient httpClient = null;
+	private String appID;
+	private String appKey;
+
 	protected String server;
-	protected String appID;
-	protected String appKey;
 
-	protected String runRequest(String server, Map<String, String> params, Object... objects)
+	public AbstractOPS4JClient(String server, String appID, String appKey, HttpClient httpclient)
+	throws MalformedURLException {
+		this.server = server;
+		if (!this.server.endsWith("/")) this.server += "/";
+		new URL(this.server); // validate the server URL
+		this.appID = appID;
+		this.appKey = appKey;
+		this.httpClient = httpclient;
+//		if (httpclient == null) this.httpClient = new DefaultHttpClient();
+	}
+	
+	protected String runRequest(String call, Map<String, String> params, Object... objects)
 	throws ClientProtocolException, IOException, HttpException {
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-
 		params.put("app_id", appID);
 		params.put("app_key", appKey);
 		params.put("_format", "ttl"); // the default
-		String requestUrl = createRequest(server, params, objects);
+		String requestUrl = createRequest(call, params, objects);
 		System.out.println("Call: " + requestUrl);
 		HttpGet httppost = new HttpGet(requestUrl); 
 
-		HttpResponse response = httpclient.execute(httppost);
+		HttpResponse response = httpClient.execute(httppost);
 		StatusLine statusLine = response.getStatusLine();
 		int statusCode = statusLine.getStatusCode();
 		if (statusCode != 200) throw new HttpException(

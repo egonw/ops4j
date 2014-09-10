@@ -24,29 +24,34 @@ package com.github.egonw.ops4j;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 public class Concepts extends AbstractOPS4JClient {
 
-	private Concepts(String server, String appID, String appKey) throws MalformedURLException {
-		this.server = server;
-		if (!this.server.endsWith("/")) this.server += "/";
-		new URL(this.server); // validate the server URL
-		this.appID = appID;
-		this.appKey = appKey;
+	private Concepts(String server, String appID, String appKey, HttpClient httpclient) throws MalformedURLException {
+		super(server, appID, appKey, httpclient);
+	}
+
+	public static Concepts getInstance(String server, String apiID, String appKey, HttpClient httpclient) throws MalformedURLException {
+		return new Concepts(server, apiID, appKey, httpclient);
 	}
 
 	public static Concepts getInstance(String server, String apiID, String appKey) throws MalformedURLException {
-		return new Concepts(server, apiID, appKey);
+		return new Concepts(server, apiID, appKey, new DefaultHttpClient());
 	}
 
 	public static Concepts getInstance(Server server) throws MalformedURLException {
-		return new Concepts(server.getServer(), server.getAppID(), server.getAppKey());
+		return new Concepts(server.getServer(), server.getAppID(), server.getAppKey(), new DefaultHttpClient());
+	}
+
+	public static Concepts getInstance(Server server, HttpClient httpclient) throws MalformedURLException {
+		return new Concepts(server.getServer(), server.getAppID(), server.getAppKey(), httpclient);
 	}
 	
 	public String freetext(String text, Object... objects) throws ClientProtocolException, IOException, HttpException {
