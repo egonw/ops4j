@@ -22,7 +22,7 @@
  */
 package com.github.egonw.ops4j;
 
-class Parameter implements IParameter {
+public class Parameter implements IParameter {
 
 	private String name;
 	
