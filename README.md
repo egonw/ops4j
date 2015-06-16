@@ -41,3 +41,13 @@ use the ResponseFormat class:
 	);
 
 Other formats include HTML, RDF, RDFJSON, and TSV.
+
+Adding other filtration parameters to API-calls is handled by the Parameter and ParameterValue classes:
+
+    Targets client = Targets.getInstance(server, appID, appKey);
+    String json = client.classPharmacologyList(
+      "http://purl.uniprot.org/enzyme/6.2.-.-", 1, 1, 
+      ResponseFormat.JSON, 
+      new ParameterValue(new Parameter("activity_type"), "IC50"),
+      new ParameterValue(new Parameter("activity_relation"), "=")
+    );

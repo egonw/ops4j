@@ -88,7 +88,9 @@ public class StructuresTest extends AbstractOPS4JTest {
 	public void similarity() throws ClientProtocolException, IOException, HttpException {
 		Structures client = Structures.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.similarity("CC(=O)Oc1ccccc1C(=O)O");
+		String turtle = client.similarity("CC(=O)Oc1ccccc1C(=O)O",
+			new ParameterValue(new Parameter("searchOptions.Threshold"), "0.9")
+			);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("CC(=O)Oc1ccccc1C(=O)O"));
