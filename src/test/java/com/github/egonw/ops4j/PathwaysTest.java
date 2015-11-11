@@ -48,8 +48,12 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(client);
 		String turtle = client.list(1, 5);
 		Assert.assertNotNull(turtle);
+		System.out.println(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("<http://rdf.wikipathways.org/Pathway/WP"));
+		Assert.assertTrue(
+			turtle.contains("<http://rdf.wikipathways.org/Pathway/WP") || // 1.4 API
+			turtle.contains("<http://identifiers.org/wikipathways/")     // later APIs
+		);
 	}
 
 	@Test
@@ -79,7 +83,10 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		String turtle = client.getTargets("http://identifiers.org/wikipathways/WP1019");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("http://identifiers.org/ncbigene/493720"));
+		Assert.assertTrue(
+			turtle.contains("http://identifiers.org/ncbigene/493720") || // 1.5 API
+			turtle.contains("http://identifiers.org/ensembl/ENSBTAG00000010191") // 2.0 API
+		);
 	}
 
 	@Test
