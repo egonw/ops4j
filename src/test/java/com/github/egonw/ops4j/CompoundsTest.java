@@ -73,7 +73,10 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"));
+		Assert.assertTrue(
+			turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5") || // 1.4 API
+			turtle.contains("MLDQJTXFUGDVEO-UHFFFAOYSA-N") // should be present always
+		);
 	}
 
 	@Test
@@ -96,7 +99,7 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/"));
+		Assert.assertTrue(turtle.contains("CHEBI_24431"));
 	}
 
 	@Test
