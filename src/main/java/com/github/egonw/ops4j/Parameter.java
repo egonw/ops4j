@@ -30,7 +30,6 @@ public class Parameter implements IParameter {
 		this.name = name;
 	}
 	
-	@Override
 	public String getName() {
 		return name;
 	}
