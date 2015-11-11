@@ -56,7 +56,10 @@ public class AssociationsTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("diseaseClass"));
-		Assert.assertTrue(turtle.contains("SIO_000983"));
+		Assert.assertTrue(
+			turtle.contains("SIO_000983") || // for 1.4
+			turtle.contains("SIO_001121")    // for 1.5
+		);
 	}
 
 	@Test
