@@ -109,7 +109,10 @@ public class TargetsTest extends AbstractOPS4JTest {
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("classifiedUnder"));
+		Assert.assertTrue(
+			turtle.contains("classifiedUnder") || // 1.4 API
+			turtle.contains("hasTargetComponent") // 1.5 API
+		);
 	}
 
 	@Test
