@@ -1,4 +1,4 @@
-/* Copyright (C) 2013-2014  Egon Willighagen <egonw@users.sf.net>
+/* Copyright (C) 2013-2015  Egon Willighagen <egonw@users.sf.net>
  * 
  * Contact: cdk-devel@lists.sourceforge.net
  * 
@@ -68,6 +68,7 @@ public class AbstractOPS4JClient {
 		String requestUrl = createRequest(call, params, objects);
 		System.out.println("Call: " + requestUrl);
 		HttpGet httppost = new HttpGet(requestUrl); 
+		httppost.addHeader("User-Agent", "ops4j (https://github.com/egonw/ops4j)");
 
 		HttpResponse response = httpClient.execute(httppost);
 		StatusLine statusLine = response.getStatusLine();
