@@ -25,6 +25,7 @@ package com.github.egonw.ops4j;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpException;
@@ -77,4 +78,11 @@ public class Diseases extends AbstractOPS4JClient {
 		params.put("uri", uri);
 		return runRequest(server + "disease", params, objects);
 	}
+
+	public String info(List<String> uris, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri_list", concatenate(uris, "|"));
+		return runRequest(server + "disease/batch", params, objects);
+	}
+
 }

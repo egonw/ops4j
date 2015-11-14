@@ -23,6 +23,8 @@
 package com.github.egonw.ops4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
@@ -94,4 +96,19 @@ public class DiseasesTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("name"));
 		Assert.assertTrue(turtle.contains("inDataset"));
 	}
+
+	@Test
+	public void infoBatch() throws ClientProtocolException, IOException, HttpException {
+		Diseases client = Diseases.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		List<String> uris = new ArrayList<String>();
+		uris.add("http://linkedlifedata.com/resource/umls/id/C0004238");
+		uris.add("http://linkedlifedata.com/resource/umls/id/C0018794");
+		String turtle = client.info(uris);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://linkedlifedata.com/resource/umls/id/C0004238"));
+		Assert.assertTrue(turtle.contains("http://linkedlifedata.com/resource/umls/id/C0018794"));
+	}
+
 }
