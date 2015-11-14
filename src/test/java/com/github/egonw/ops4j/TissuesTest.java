@@ -58,4 +58,52 @@ public class TissuesTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo#TS-0171"));
 		Assert.assertTrue(turtle.contains("ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo#TS-0173"));
 	}
+
+	@Test
+	public void forProteinCount() throws ClientProtocolException, IOException, HttpException {
+		Tissues client = Tissues.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forProteinCount("http://purl.uniprot.org/uniprot/P55795");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("tissueExpressionTotalResults"));
+		Assert.assertFalse(turtle.contains(": 0,"));
+	}
+
+	@Test
+	public void forProteinList() throws ClientProtocolException, IOException, HttpException {
+		Tissues client = Tissues.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forProteinList(
+			"http://purl.uniprot.org/uniprot/P55795",
+			1, 4
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://www.nextprot.org/db/search#NX_P55795"));
+	}
+
+	@Test
+	public void getProteinCount() throws ClientProtocolException, IOException, HttpException {
+		Tissues client = Tissues.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.getProteinCount("ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo#TS-0016");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("tissueExpressionTotalResults"));
+		Assert.assertFalse(turtle.contains(": 0,"));
+	}
+
+	@Test
+	public void getProteinList() throws ClientProtocolException, IOException, HttpException {
+		Tissues client = Tissues.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.getProteinList(
+			"ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo#TS-0016",
+			1, 4
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("nextprot.org/"));
+	}
 }

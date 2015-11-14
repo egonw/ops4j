@@ -57,4 +57,32 @@ public class Tissues extends AbstractOPS4JClient {
 		return runRequest(server + "tissue/batch", params, objects);
 	}
 
+	public String forProteinCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "tissue/byProtein/count", params, objects);
+	}
+
+	public String forProteinList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "tissue/byProtein", params, objects);
+	}
+
+	public String getProteinCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		return runRequest(server + "tissue/getProteins/count", params, objects);
+	}
+
+	public String getProteinList(String uri, int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_page", Integer.toString(page));
+		params.put("_pageSize", Integer.toString(pageSize));
+		return runRequest(server + "tissue/getProteins", params, objects);
+	}
+
 }
