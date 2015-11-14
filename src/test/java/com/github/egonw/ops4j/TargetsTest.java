@@ -47,7 +47,7 @@ public class TargetsTest extends AbstractOPS4JTest {
 
 	@Test
 	public void infoBatch() throws ClientProtocolException, IOException, HttpException {
-		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		List<String> uris = new ArrayList<String>();
 		uris.add("http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291");
