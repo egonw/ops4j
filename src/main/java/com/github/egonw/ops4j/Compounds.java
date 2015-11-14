@@ -51,15 +51,6 @@ public class Compounds extends AbstractOPS4JClient {
 		return runRequest(server + "compound", params, objects);
 	}
 
-	protected static String concatenate(List<String> list, String separator) {
-		StringBuffer buffer = new StringBuffer();
-		for (String item : list) {
-			buffer.append(item).append(separator);
-		}
-		String result = buffer.toString();
-		return result.substring(0,result.length()-1);
-	}
-	
 	public String info(List<String> uris, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri_list", concatenate(uris, "|"));

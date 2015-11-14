@@ -29,6 +29,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
@@ -58,6 +59,15 @@ public class AbstractOPS4JClient {
 		this.appKey = appKey;
 		this.httpClient = httpclient;
 		if (httpclient == null) this.httpClient = new DefaultHttpClient();
+	}
+
+	protected static String concatenate(List<String> list, String separator) {
+		StringBuffer buffer = new StringBuffer();
+		for (String item : list) {
+			buffer.append(item).append(separator);
+		}
+		String result = buffer.toString();
+		return result.substring(0,result.length()-1);
 	}
 	
 	protected String runRequest(String call, Map<String, String> params, Object... objects)
