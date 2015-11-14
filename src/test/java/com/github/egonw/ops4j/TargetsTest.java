@@ -84,6 +84,18 @@ public class TargetsTest extends AbstractOPS4JTest {
 	}
 
 	@Test
+	public void allPharmacology() throws ClientProtocolException, IOException, HttpException {
+		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.allPharmacology(
+			"http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291"
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291"));
+	}
+
+	@Test
 	public void classifications() throws ClientProtocolException, IOException, HttpException {
 		Targets client = Targets.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);

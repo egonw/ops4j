@@ -77,6 +77,13 @@ public class Compounds extends AbstractOPS4JClient {
 		return runRequest(server + "compound/pharmacology/pages", params, objects);
 	}
 
+	public String allPharmacology(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri", uri);
+		params.put("_pageSize", "all");
+		return runRequest(server + "compound/pharmacology/pages", params, objects);
+	}
+
 	public String compoundByClassCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);

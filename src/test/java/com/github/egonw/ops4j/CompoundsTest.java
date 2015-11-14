@@ -105,6 +105,21 @@ public class CompoundsTest extends AbstractOPS4JTest {
 	}
 
 	@Test
+	public void allPharmacology() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.allPharmacology(
+			"http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"
+		);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(
+			turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5") || // 1.4 API
+			turtle.contains("MLDQJTXFUGDVEO-UHFFFAOYSA-N") // should be present always
+		);
+	}
+
+	@Test
 	public void compoundByClassCount() throws ClientProtocolException, IOException, HttpException {
 		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);

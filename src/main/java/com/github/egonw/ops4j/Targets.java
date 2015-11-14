@@ -71,7 +71,7 @@ public class Targets extends AbstractOPS4JClient {
 		return runRequest(server + "target/pharmacology/pages", params, objects);
 	}
 
-	public String pharmacologyAll(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
+	public String allPharmacology(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
 		params.put("_pageSize", "all");
