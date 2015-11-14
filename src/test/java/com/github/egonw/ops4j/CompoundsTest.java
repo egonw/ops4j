@@ -23,6 +23,8 @@
 package com.github.egonw.ops4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
@@ -34,6 +36,15 @@ public class CompoundsTest extends AbstractOPS4JTest {
 	{ super.pickUpConfig(); }
 
 	@Test
+	public void concatenate() {
+		List<String> list = new ArrayList<String>();
+		list.add("A");
+		list.add("B");
+		String result = Compounds.concatenate(list, "|");
+		Assert.assertEquals("A|B", result);
+	}
+
+	@Test
 	public void info() throws ClientProtocolException, IOException, HttpException {
 		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
@@ -41,6 +52,20 @@ public class CompoundsTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"));
+	}
+
+	@Test
+	public void infoBatch() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		List<String> uris = new ArrayList<String>();
+		uris.add("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5");
+		uris.add("http://www.conceptwiki.org/concept/dd758846-1dac-4f0d-a329-06af9a7fa413");
+		String turtle = client.info(uris);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/38932552-111f-4a4e-a46a-4ed1d7bdf9d5"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/dd758846-1dac-4f0d-a329-06af9a7fa413"));
 	}
 
 	@Test

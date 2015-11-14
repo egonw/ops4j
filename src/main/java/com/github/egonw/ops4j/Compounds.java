@@ -25,6 +25,7 @@ package com.github.egonw.ops4j;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpException;
@@ -48,6 +49,21 @@ public class Compounds extends AbstractOPS4JClient {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
 		return runRequest(server + "compound", params, objects);
+	}
+
+	protected static String concatenate(List<String> list, String separator) {
+		StringBuffer buffer = new StringBuffer();
+		for (String item : list) {
+			buffer.append(item).append(separator);
+		}
+		String result = buffer.toString();
+		return result.substring(0,result.length()-1);
+	}
+	
+	public String info(List<String> uris, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri_list", concatenate(uris, "|"));
+		return runRequest(server + "compound/batch", params, objects);
 	}
 
 	public String classifications(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
