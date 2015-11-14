@@ -25,6 +25,7 @@ package com.github.egonw.ops4j;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpException;
@@ -43,11 +44,17 @@ public class Targets extends AbstractOPS4JClient {
 	public static Targets getInstance(Server server) throws MalformedURLException {
 		return new Targets(server.getServer(), server.getAppID(), server.getAppKey());
 	}
-	
+
 	public String info(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("uri", uri);
 		return runRequest(server + "target", params, objects);
+	}
+
+	public String info(List<String> uris, Object... objects) throws ClientProtocolException, IOException, HttpException {
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("uri_list", concatenate(uris, "|"));
+		return runRequest(server + "target/batch", params, objects);
 	}
 
 	public String pharmacologyCount(String uri, Object... objects) throws ClientProtocolException, IOException, HttpException {

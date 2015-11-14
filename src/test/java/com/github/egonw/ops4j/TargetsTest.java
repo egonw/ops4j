@@ -23,6 +23,8 @@
 package com.github.egonw.ops4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
@@ -41,6 +43,20 @@ public class TargetsTest extends AbstractOPS4JTest {
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291"));
+	}
+
+	@Test
+	public void infoBatch() throws ClientProtocolException, IOException, HttpException {
+		Compounds client = Compounds.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		List<String> uris = new ArrayList<String>();
+		uris.add("http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291");
+		uris.add("http://www.conceptwiki.org/concept/7b21c06f-0343-4fcc-ab0f-a74ffe871ade");
+		String turtle = client.info(uris);
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/00059958-a045-4581-9dc5-e5a08bb0c291"));
+		Assert.assertTrue(turtle.contains("http://www.conceptwiki.org/concept/7b21c06f-0343-4fcc-ab0f-a74ffe871ade"));
 	}
 
 	@Test
