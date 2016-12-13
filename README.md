@@ -8,7 +8,7 @@ particular. Dependencies are JUnit and Apache's HttpClient and Commons IO.
 * License: LGPL v2.1 or later
 * Authors: Egon Willighagen
 
-This version is compatible with the 1.4, 1.5, and upcoming 2.0 APIs.
+This version is compatible with the 2.1 API.
 
 Compiling and Testing
 =====================
