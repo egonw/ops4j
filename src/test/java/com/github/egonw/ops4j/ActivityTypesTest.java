@@ -50,6 +50,6 @@ public class ActivityTypesTest extends AbstractOPS4JTest {
 		String turtle = client.list(1, 5);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("IC50"));
+		Assert.assertTrue(turtle.contains("activity_count"));
 	}
 }
