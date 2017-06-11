@@ -127,7 +127,7 @@ public class PathwaysTest extends AbstractOPS4JTest {
 	public void forTargetCount() throws ClientProtocolException, IOException, HttpException {
 		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
-		String turtle = client.forTargetCount("http://identifiers.org/ncbigene/282478");
+		String turtle = client.forTargetCount("http://identifiers.org/ncbigene/506");
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
 		Assert.assertTrue(turtle.contains("pathway_count"));
@@ -139,7 +139,7 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
 		String turtle = client.forTargetList(
-			"http://identifiers.org/ncbigene/282478",
+			"http://identifiers.org/ncbigene/506",
 			1, 5
 		);
 		Assert.assertNotNull(turtle);
