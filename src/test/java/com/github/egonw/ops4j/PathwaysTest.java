@@ -181,4 +181,16 @@ public class PathwaysTest extends AbstractOPS4JTest {
 		Assert.assertTrue(turtle.contains("pathway_count"));
 		Assert.assertTrue(turtle.contains("http://purl.obolibrary.org/obo/NCBITaxon_"));
 	}
+
+    @Test
+    public void noCowExpected() throws ClientProtocolException, IOException, HttpException {
+		Pathways client = Pathways.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.forTargetCount("http://identifiers.org/ncbigene/282478");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("pathway_count"));
+		Assert.assertFalse(turtle.contains("\"0\""));
+	}
+
 }
