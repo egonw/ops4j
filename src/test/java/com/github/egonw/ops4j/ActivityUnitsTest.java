@@ -44,6 +44,16 @@ public class ActivityUnitsTest extends AbstractOPS4JTest {
 	}
 
 	@Test
+	public void countForType() throws ClientProtocolException, IOException, HttpException {
+		ActivityUnits client = ActivityUnits.getInstance(super.server, super.appID, super.appKey);
+		Assert.assertNotNull(client);
+		String turtle = client.count("IC50");
+		Assert.assertNotNull(turtle);
+		Assert.assertTrue(turtle.contains("prefix"));
+		Assert.assertTrue(turtle.contains("normalised_activity_unit_count"));
+	}
+
+	@Test
 	public void list() throws ClientProtocolException, IOException, HttpException {
 		ActivityUnits client = ActivityUnits.getInstance(super.server, super.appID, super.appKey);
 		Assert.assertNotNull(client);
