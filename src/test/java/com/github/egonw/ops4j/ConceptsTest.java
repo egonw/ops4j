@@ -1,4 +1,4 @@
-/* Copyright (C) 2013  Egon Willighagen <egonw@users.sf.net>
+/* Copyright (C) 2013-2017  Egon Willighagen <egonw@users.sf.net>
  * 
  * Contact: cdk-devel@lists.sourceforge.net
  * 
@@ -27,8 +27,10 @@ import java.io.IOException;
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("Currently disabled because ConceptWiki is being replace in 2.2...")
 public class ConceptsTest extends AbstractOPS4JTest {
 
 	{ super.pickUpConfig(); }
