@@ -29,9 +29,9 @@ abstract class AbstractOPS4JTest {
 	protected String appKey;
 
 	public void pickUpConfig() {
-		server = System.getProperty("server", "");
-		appID = System.getProperty("appID", "");
-		appKey = System.getProperty("appKey", "");
+        server = System.getProperty("server", System.getenv( "OPS4J_server" ));
+        appID = System.getProperty("appID", System.getenv( "OPS4J_appID" ));
+        appKey = System.getProperty("appKey", System.getenv( "OPS4J_appKey" ));
 	}
 	
 }
