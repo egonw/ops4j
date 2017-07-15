@@ -165,7 +165,7 @@ public class TargetsTest extends AbstractOPS4JTest {
 		);
 		Assert.assertNotNull(turtle);
 		Assert.assertTrue(turtle.contains("prefix"));
-		Assert.assertTrue(turtle.contains("targetOrganismName"));
+		Assert.assertTrue(turtle.contains("organismName"));
 	}
 
 	@Test
