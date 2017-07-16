@@ -32,6 +32,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+/**
+ * @deprecated No longer supported in API version 2.2.
+ */
 public class Concepts extends AbstractOPS4JClient {
 
 	private Concepts(String server, String appID, String appKey, HttpClient httpclient) throws MalformedURLException {
