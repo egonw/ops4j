@@ -46,20 +46,20 @@ public class ActivityUnits extends AbstractOPS4JClient {
 	
 	public String count(Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
-		return runRequest(server + "pharmacology/filters/count_units", params, objects);
+		return runRequest(server + "pharmacology/filters/units/count", params, objects);
 	}
 
 	public String countForType(String type, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("activity_type", type);
-		return runRequest(server + "pharmacology/filters/count_units", params, objects);
+		return runRequest(server + "pharmacology/filters/units/count", params, objects);
 	}
 
 	public String list(int page, int pageSize, Object... objects) throws ClientProtocolException, IOException, HttpException {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("_page", Integer.toString(page));
 		params.put("_pageSize", Integer.toString(pageSize));
-		return runRequest(server + "pharmacology/filters/units", params, objects);
+		return runRequest(server + "pharmacology/filters/units/pages", params, objects);
 	}
 
 	public String forType(String type, Object... objects) throws ClientProtocolException, IOException, HttpException {
