@@ -59,7 +59,7 @@ public class ActivityUnits extends AbstractOPS4JClient {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("_page", Integer.toString(page));
 		params.put("_pageSize", Integer.toString(pageSize));
-		return runRequest(server + "pharmacology/filters/units", params, objects);
+		return runRequest(server + "pharmacology/filters/units/pages", params, objects);
 	}
 
 	public String forType(String type, Object... objects) throws ClientProtocolException, IOException, HttpException {
