@@ -8,7 +8,7 @@ particular. Dependencies are JUnit and Apache's HttpClient and Commons IO.
 * License: LGPL v2.1 or later
 * Authors: Egon Willighagen
 
-This version is compatible with the 2.1 API.
+This version is compatible with the 2.1 and 2.2 APIs.
 
 Compiling and Testing
 =====================
@@ -22,10 +22,10 @@ Compile and test with:
 
 The current beta test server can be tested against using:
 
-    -Dserver=https://beta.openphacts.org/1.5/
+    -Dserver=https://beta.openphacts.org/2.2/
     
 The documentation for this Open PHACTS API server can be found at
-https://dev.openphacts.org/docs/1.5
+https://dev.openphacts.org/docs/2.1
 
 Example
 =======
